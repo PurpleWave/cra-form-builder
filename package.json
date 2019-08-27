@@ -1,0 +1,51 @@
+{
+  "name": "cra-form-builder",
+  "version": "0.0.1",
+  "description": "Drag-n-Drop Form Builder using custom components meant for projects built with Create-React-App.",
+  "main": "lib/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "./node_modules/.bin/webpack -p --config webpack.production.config.js",
+    "build:dev": "./node_modules/.bin/webpack --mode development",
+    "build:style": "./node_modules/.bin/node-sass ./scss/application.scss dist/app.css --output-style compressed",
+    "build:lib": "npm run transpile && npm run build:style",
+    "build:dist": "npm run build && npm run copy:dist",
+    "copy:dist": "./node_modules/.bin/copyfiles -f \"./dist/*\" \"./public/dist\"",
+    "prepublish": "npm run build:lib && npm run build",
+    "start": "./node_modules/.bin/webpack-dev-server --hot --inline --mode development",
+    "pretranspile": "./node_modules/.bin/rimraf lib",
+    "transpile": "./node_modules/.bin/babel --out-dir lib src --copy-files"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/PurpleWave/cra-form-builder.git"
+  },
+  "author": "Alex Neises",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/PurpleWave/cra-form-builder/issues"
+  },
+  "homepage": "https://github.com/PurpleWave/cra-form-builder#readme",
+  "devDependencies": {
+    "@babel/cli": "^7.5.5",
+    "@babel/core": "^7.5.5",
+    "@babel/plugin-proposal-class-properties": "^7.5.5",
+    "@babel/plugin-proposal-json-strings": "^7.2.0",
+    "@babel/plugin-syntax-dynamic-import": "^7.2.0",
+    "@babel/plugin-syntax-import-meta": "^7.2.0",
+    "@babel/preset-env": "^7.5.5",
+    "@babel/preset-react": "^7.0.0",
+    "babel-loader": "^8.0.6",
+    "copyfiles": "^2.1.1",
+    "react": "^16.9.0",
+    "react-dom": "^16.9.0",
+    "rimraf": "^3.0.0",
+    "webpack": "^4.39.3",
+    "webpack-cli": "^3.3.7",
+    "webpack-dev-server": "^3.8.0"
+  },
+  "dependencies": {
+    "react-dnd": "^9.3.4",
+    "react-dnd-html5-backend": "^9.3.4"
+  }
+}
